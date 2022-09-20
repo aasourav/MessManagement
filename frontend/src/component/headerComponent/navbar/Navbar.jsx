@@ -5,10 +5,10 @@ export default class Navbar extends React.Component{
     render(){
         return(
             <div className="navbar">
-                <input type="button" value="Add Data" />
+                <input type="button" value="Home Page" />
                 <input type="button" value="Bazar List" />
                 <input type="button" value="Meal Count" />
-                <input className="last" type="button" value="Home Page" />
+                <input className="last" type="button" value="Add Data" />
             </div>
         )
     }

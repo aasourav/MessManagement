@@ -1,8 +1,9 @@
 .App{
-    background-color: rgb(231, 125, 4);
+    background-color: rgb(7, 109, 41);
     color: #fff;
 }
 .title{
+    font-family:cursive;
     margin: 0 auto;
     text-align: center;
     padding-top: 10px;
