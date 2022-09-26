@@ -13,7 +13,7 @@ export default function Home(){
                 </div>
                 <table>
                     <caption>
-                        <h3>Members Shortcut Information View</h3>
+                        <h3>Members Shortcut Information</h3>
                     </caption>
                     <tr>
                         <th>Name</th>

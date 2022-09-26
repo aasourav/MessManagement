@@ -5,9 +5,6 @@ export default function Meal(){
         return(
             <div>
                 <form action="">
-                        <div className="inputData">
-                            <h3>Input Data</h3>
-                        </div>
                         <div className="fieldSet">
                             <fieldset>
                                 <legend> <h3>Date</h3></legend>
@@ -21,7 +18,7 @@ export default function Meal(){
                                         <option value="">Ariful</option>
                                         <option value="">Sourav</option>
                                         <option value="">Mannan</option>
-                                    </select>
+                                </select>
                             </fieldset>
                             <fieldset>
                                 <legend> <h3>Input Meal</h3></legend>
