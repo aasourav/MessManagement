@@ -1,9 +1,7 @@
-import React from "react";
 import './home.css';
 import MembersTable from "./membersTable/MembersTable";
 
-export default class Home extends React.Component{
-    render(){
+export default function Home(){
         const arr = [1,2,3,4,5]
         return(
             <div className="main">
@@ -28,5 +26,4 @@ export default class Home extends React.Component{
                 </table>
             </div>
         )
-    }
 }

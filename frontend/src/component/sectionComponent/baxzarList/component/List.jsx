@@ -1,7 +1,4 @@
-import React from "react";
-export default class List extends React.Component{
-    render(){
-        const {lists} = this.props
+export default function List({lists}){
         return(
             <>
                 {lists.map(()=>(
@@ -13,5 +10,4 @@ export default class List extends React.Component{
                 ))}
             </>
         )
-    }
 }

@@ -1,7 +1,4 @@
-import React from "react";
-export default class MembersTable extends React.Component{
-    render(){
-        const {members} = this.props;
+export default function MembersTable({members}){
         return(
            <>
             {members.map(()=>(
@@ -15,5 +12,4 @@ export default class MembersTable extends React.Component{
             ))}
            </>
         )
-    }
 }

@@ -1,8 +1,6 @@
-import React from "react";
 import './bazar.css';
 import List from "./component/List";
-export default class Bazar extends React.Component{
-    render(){
+export default function Bazar(){
         const arr = [1,2,3,4,5]
         return(
             <div className="main">
@@ -43,5 +41,5 @@ export default class Bazar extends React.Component{
                     </table>             
             </div>
         )
-    }
+    
 }
