@@ -18,10 +18,10 @@ table th,td{
 .homeHeader{
     margin-left: 100px;
     color: rgb(19, 101, 104);
+    
 }
 .main{
-    display: flex; 
-    flex-direction:column;
+    display:block;
 }
 table{
     align-items: center;

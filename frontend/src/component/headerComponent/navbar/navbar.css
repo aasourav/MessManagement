@@ -7,7 +7,7 @@
     text-decoration: none;
     text-align: center;
     font-family:cursive;
-    background-color:rgb(19, 182, 54);
+    background-color:rgb(9, 136, 145);
     width:35%;
     border: none;
     padding-top: 10px;
@@ -19,15 +19,15 @@
     margin-bottom: 2px;
     cursor: pointer;
     color: #fff;
-    border: 1px solid rgb(19, 182, 54);;
+    border: 1px solid rgb(11, 105, 143);;
 }
 .navbar .active{
-    color:rgb(4, 177, 41);
+    color:rgb(9, 136, 145);
     background-color: #fff;
     border-bottom: 0px;
 }
 .navbar .input:hover{
-    color:rgb(4, 177, 41);
+    color:rgb(9, 136, 145);
     background-color: #fff;
     border: 1px solid;
     padding-top: 9px;
