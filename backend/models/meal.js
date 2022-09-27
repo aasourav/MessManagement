@@ -2,7 +2,7 @@ const mongoose  = require('mongoose')
 const Meal = mongoose.Schema({
     date:{
         type:Date,
-        default:Date.now
+        default:Date.now()
     },
     sourav:{
         type:String,
@@ -10,11 +10,11 @@ const Meal = mongoose.Schema({
     },
     mannan:{
         type:String,
-        required: true
+        required: false
     },
     arif:{
         type:String,
-        required: true
+        required: false
     }
 })
 module.exports = Meal;

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const cors = require('cors')
 const dotenv = require('dotenv') // to read env content
 dotenv.config()
 //now const a =  process.env.VarName
@@ -30,7 +31,7 @@ mongoose.connection.on('connected',()=>{
     console.log("Mongo Connected")
 })
 
-
+app.use(cors())
 app.use(express.json())
 app.use('/deposite',depositeRoute);
 app.use('/expense',expenseRoute);
