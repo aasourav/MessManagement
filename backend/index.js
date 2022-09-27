@@ -1,5 +1,17 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const dotenv = require('dotenv') // to read env content
+dotenv.config()
+//now const a =  process.env.VarName
+
+
+const depositeRoute = require('./routes/depositeRoute');
+const expenseRoute = require('./routes/expenseRoute');
+const mealRoute = require('./routes/mealRoute');
+
+
+
+
 const url = "mongodb://localhost:27017/MessManagement"
 const app = express()
 const connect = async()=>{
@@ -18,14 +30,23 @@ mongoose.connection.on('connected',()=>{
     console.log("Mongo Connected")
 })
 
-const test = new mongoose.Schema({name : String});
-const testdata = mongoose.model('bazar',test);
-const name = new testdata({name: "ahsan"})
-const v =async()=>{
-    await name.save();
-}
-v();
-app.listen(3001,()=>{
+
+app.use(express.json())
+app.use('/deposite',depositeRoute);
+app.use('/expense',expenseRoute);
+app.use('/meal',mealRoute);
+
+
+
+app.use((err,req,res,next)=>{
+    const errStatus = err.status || 500
+    const errMsg = err.message || "Something went wrong"
+    return res.status(errStatus).json(errMsg)
+})
+
+
+
+app.listen(8800,()=>{
     connect()
     console.log("conntected to Backend")
 })

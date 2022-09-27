@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const deposit = mongoose.Schema({
+const Deposit = mongoose.Schema({
     date:{
         type: Date,
         default: Date.now
@@ -14,4 +14,4 @@ const deposit = mongoose.Schema({
     }
 })
 
-module.exports = deposit
+module.exports = Deposit

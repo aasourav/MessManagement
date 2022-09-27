@@ -1,5 +1,5 @@
 const mongoose  = require('mongoose')
-const meal = mongoose.Schema({
+const Meal = mongoose.Schema({
     date:{
         type:Date,
         default:Date.now
@@ -17,4 +17,4 @@ const meal = mongoose.Schema({
         required: true
     }
 })
-module.exports = meal;
+module.exports = Meal;

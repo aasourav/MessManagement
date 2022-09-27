@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-
-const expense = new mongoose.Schema({
+const Expense = new mongoose.Schema({
     date:{
         type:Date,
         default: Date.now
@@ -15,4 +14,4 @@ const expense = new mongoose.Schema({
     }
 });
 
-module.exports = expense
+module.exports = Expense
