@@ -172,7 +172,7 @@ export default function Bazar(){
                                     <legend> <h3>Amount</h3></legend>
                                     <input placeholder='Input Amount' type="text" name="amount" value={Data.amount} onChange={handleExpenseChange} />
                                     <br/>
-                                    <input placeholder='Input Secret Key' type='password' name='scrt' value={scrt} onChange={cngScrt}/>
+                                    <input placeholder='Key for Delete & Submit' type='password' name='scrt' value={scrt} onChange={cngScrt}/>
                                 </fieldset>
                             
                         </div>
@@ -198,7 +198,7 @@ export default function Bazar(){
                                     <legend> <h3>Amount</h3></legend>
                                     <input placeholder='Input Amount' type="text" name="amount" value={Data1.amount} onChange={handleDepositChange} />
                                     <br/>
-                                    <input placeholder='Input Secret Key' type='password' name='scrt1' value={scrt1} onChange={cngScrt}/>
+                                    <input placeholder='Key for Delete & Submit' type='password' name='scrt1' value={scrt1} onChange={cngScrt}/>
                                 </fieldset>
                         </div>
                         {scrt1 === Sc ? <input className="submit" type="submit" value="Submit" />: <p></p>}

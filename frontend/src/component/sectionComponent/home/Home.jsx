@@ -123,19 +123,26 @@ export default function Home(){
 
      //Personal Expense
      const [PersonalExpense, setPersonalExpense] = useState({
-        sourav:0,mannan:0,arif:0
+        sourav:0,mannan:0,arif:0,sc:0,ac:0,mc:0
      })
      //Sourav 
      const sExp = (mealRate*MealData.sourav).toFixed(0);
      const mExp = (mealRate*MealData.mannan).toFixed(0);
      const aExp = (mealRate*MealData.arif).toFixed(0);
+     const Sc = PersonalExpense.sourav - Deposite.sourav < 0  ? Deposite.sourav-PersonalExpense.sourav :  PersonalExpense.sourav - Deposite.sourav
+     const Mc = PersonalExpense.mannan - Deposite.mannan <0 ? Deposite.mannan - PersonalExpense.mannan : PersonalExpense.mannan - Deposite.mannan
+     const Ac = PersonalExpense.arif - Deposite.arif <0 ? Deposite.arif-PersonalExpense.arif : PersonalExpense.arif - Deposite.arif
+
      useEffect(()=>{
         setPersonalExpense({
             sourav:sExp,
             mannan:mExp,
-            arif:aExp
+            arif:aExp,
+            sc:Sc,
+            mc:Mc,
+            ac:Ac
         })
-     },[sExp,aExp,mExp])
+     },[sExp,aExp,mExp,Sc,Mc,Ac])
         return(
             <div className="main">
                 <div className="homeHeader">
@@ -160,21 +167,21 @@ export default function Home(){
                         <td>{Deposite.sourav}</td>
                         <td>{PersonalExpense.sourav}</td>
                         <td>{MealData.sourav}</td>
-                        <td>{PersonalExpense.sourav - Deposite.sourav >= 0  ? 'Have to pay' : 'Will get'}</td>
+                        <td>{PersonalExpense.sourav - Deposite.sourav >= 0  ? <span>Have to Pay <b style={{color:'red'}}>{PersonalExpense.sc} </b>Taka</span> : <span>Will get  return <b>{PersonalExpense.sc}</b> Taka </span>}</td>
                     </tr>
                     <tr key={Math.random()}>
                         <td>Arifur Rahman</td>
                         <td>{Deposite.arif}</td>
                         <td>{PersonalExpense.arif}</td>
                         <td>{MealData.arif}</td>
-                        <td>{PersonalExpense.arif - Deposite.arif >= 0  ? 'Have to pay' : 'Will get'}</td>
+                        <td>{PersonalExpense.arif - Deposite.arif >= 0  ? <span>Have to Pay <b style={{color:'red'}}>{PersonalExpense.ac}</b> Taka</span> : <span>Will get return  <b>{PersonalExpense.ac}</b> Taka</span>}</td>
                     </tr>
                     <tr key={Math.random()}>
                         <td>Mannan Hossain</td>
                         <td>{Deposite.mannan}</td>
                         <td>{PersonalExpense.mannan}</td>
                         <td>{MealData.mannan}</td>
-                        <td>{PersonalExpense.mannan - Deposite.mannan >= 0  ? 'Have to pay' : 'Will get'}</td>
+                        <td>{PersonalExpense.mannan - Deposite.mannan >= 0  ? <span>Have to Pay <b style={{color:'red'}}>{PersonalExpense.mc}</b> Taka</span> : <span>Will get return <b>{PersonalExpense.mc}</b> Taka</span>}</td>
                     </tr>
                     {/* <MembersTable members={arr}/> */}
                 </table>

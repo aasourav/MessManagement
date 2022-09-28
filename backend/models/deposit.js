@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const Deposit = mongoose.Schema({
     date:{
-        type: Date,
-        default: Date.now
+        type: String,
+        required: true
     },
     name:{
         type: String,
