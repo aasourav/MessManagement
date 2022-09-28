@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import './home.css';
 
 export default function Home(){
-
-
     ///CacCulating Meal
     const [lists,setLists] = useState()
     const [MealData,setMeals] = useState({

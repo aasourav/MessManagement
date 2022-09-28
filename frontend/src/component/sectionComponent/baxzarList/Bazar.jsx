@@ -221,7 +221,7 @@ export default function Bazar(){
                         </tbody>
                         
                     </table>
-                    <table>
+                    <table className='deposite'>
                         <caption>Deposit Hisotory</caption>
                         <tbody>
                         <tr>
