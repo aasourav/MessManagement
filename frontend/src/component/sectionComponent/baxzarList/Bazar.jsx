@@ -16,6 +16,9 @@ export default function Bazar(){
         })
         const [scrt,setScrt] = useState()
         const [scrt1,setScrt1] = useState()
+        const [track1,setTrac1] = useState()
+        const [track2,setTrac2] = useState()
+
         const [Elists,setExLists] = useState()
         const [Dlists,setDeLists] = useState()
 
@@ -25,14 +28,14 @@ export default function Bazar(){
                 setExLists(res)
             }
             fetchData();
-        },[])
+        },[Data,track1])
         useEffect(()=>{
             const fetchData = async()=>{
                 const res = await axios.get('http://localhost:8800/deposite');
                 setDeLists(res)
             }
             fetchData();
-        },[])
+        },[Data1,track2])
         const handleExpenseChange = (e)=>{
             if(e.target.name === 'date'){
                 setData({
@@ -142,11 +145,13 @@ export default function Bazar(){
             const url = `http://localhost:8800/expense/${e.target.name}`;
             await axios.delete(url).then(res=>console.log(res.data))
             setScrt('')
+            setTrac1({track1:Math.random()})
         }
         const DltHandle2 = async(e) =>{
             const url = `http://localhost:8800/deposite/${e.target.name}`;
             await axios.delete(url).then(res=>console.log(res.data))
             setScrt1('')
+            setTrac2({track2:Math.random()})
         }
         return(
             <div className="main">

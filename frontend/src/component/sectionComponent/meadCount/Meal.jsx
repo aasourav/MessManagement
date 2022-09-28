@@ -19,7 +19,7 @@ export default function Meal(){
                 setLists(res)
             }
             fetchData();
-        },[])
+        },[Data])
         if(lists){
              let sum = lists.data.map((v)=>(parseFloat(v.sourav)+parseFloat(v.mannan)+parseFloat(v.arif)))
              var Sum = 0;
