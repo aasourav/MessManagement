@@ -33,10 +33,6 @@ export default function Bazar(){
             }
             fetchData();
         },[])
-
-        
-        console.log(Elists)
-        console.log(Dlists)
         const handleExpenseChange = (e)=>{
             if(e.target.name === 'date'){
                 setData({
@@ -74,6 +70,8 @@ export default function Bazar(){
                 name:'',
                 amount:''
             })
+            setScrt('')
+            
         }
         const handleDepositChange = (e)=>{
             if(e.target.name === 'date'){
@@ -101,7 +99,6 @@ export default function Bazar(){
             const DepData ={
                 date,name,amount
             }
-            console.log(DepData)
             await axios.post('http://localhost:8800/deposite',DepData)
             .then(res=>{
                 console.log(res.data)
@@ -111,6 +108,7 @@ export default function Bazar(){
                 name:'',
                 amount:''
             })
+            setScrt1('')
         }
         const cngScrt = (e)=>{
             if(e.target.name === 'scrt'){
@@ -140,7 +138,16 @@ export default function Bazar(){
             }
         }
 
-
+        const DltHandle1 = async(e) =>{
+            const url = `http://localhost:8800/expense/${e.target.name}`;
+            await axios.delete(url).then(res=>console.log(res.data))
+            setScrt('')
+        }
+        const DltHandle2 = async(e) =>{
+            const url = `http://localhost:8800/deposite/${e.target.name}`;
+            await axios.delete(url).then(res=>console.log(res.data))
+            setScrt1('')
+        }
         return(
             <div className="main">
                 <div className='form_data'>
@@ -208,7 +215,7 @@ export default function Bazar(){
                                 will be in dropdown list */}
                                 <th>Amount</th>
                             </tr>
-                            { Elists ? <List lists={Elists.data}/> : null}
+                            { Elists ? <List Bool={scrt === Sc ? true : false} DltHandle={DltHandle1} lists={Elists.data}/> : null}
                             <tr>
                                 <th colSpan={2}>Total</th>
                                 <th>{Esum}</th>
@@ -226,7 +233,7 @@ export default function Bazar(){
                             will be in dropdown list */}
                             <th>Amount</th>
                         </tr>
-                        { Dlists ? <List lists={Dlists.data}/> : null}
+                        { Dlists ? <List Bool={scrt1 === Sc ? true : false} DltHandle={DltHandle2} lists={Dlists.data}/> : null}
                         <tr>
                             <th colSpan={2}>Total</th>
                             <th>{Dsum}</th>

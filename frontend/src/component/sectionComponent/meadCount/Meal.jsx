@@ -53,7 +53,6 @@ export default function Meal(){
                     ...Data,
                     date:e.target.value
                 })
-                console.log(e.target.value)
             }
             else if(e.target.name==='secret'){
                 setData({
@@ -86,7 +85,14 @@ export default function Meal(){
             })
         }
 
-        
+        const DltHandle = async(e) =>{
+            const url = `http://localhost:8800/meal/${e.target.name}`;
+            await axios.delete(url).then(res=>console.log(res.data))
+            setData({
+                ...Data,
+                secret:''
+            })
+        }
         return(
             <div>
                 <form action="" onSubmit={Submit}>
@@ -110,7 +116,7 @@ export default function Meal(){
                             </fieldset>
                             <fieldset>
                                 <legend> <h3>Secret Code</h3></legend>
-                                <input onChange={handleSubmit} value={Data.secret} type="password" name="secret" id="" />
+                                <input placeholder='for delete and submit button' onChange={handleSubmit} value={Data.secret} type="password" name="secret" id="" />
                             </fieldset>
                         </div>
                         {Data.secret === sc ? <input  className="submit" type="submit" value="Submit" /> : <p></p>}
@@ -124,7 +130,7 @@ export default function Meal(){
                                 <th>Mannan</th>
                             </tr>
                             
-                            {lists ? <MealList lists={lists.data}/> : null}
+                            {lists ? <MealList Bool={Data.secret === sc ? true : false} DltHandle={DltHandle} lists={lists.data}/> : null}
                             <tr>
                                 <th colSpan={3}>Total Meal</th>
                                 <th>{Sum ? Sum : '0'}</th>
