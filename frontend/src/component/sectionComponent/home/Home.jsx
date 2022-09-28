@@ -115,7 +115,7 @@ export default function Home(){
     
      // Meal Rate
      const [mealRate,setMealRate] = useState()
-     const calcul = parseFloat(Expense.totalExpense / MealData.totalMeal).toFixed(2)
+     const calcul = MealData.totalMeal ? parseFloat(Expense.totalExpense / MealData.totalMeal).toFixed(2) : 0
      useEffect(()=>{
         setMealRate(calcul)
      },[calcul])
@@ -167,21 +167,21 @@ export default function Home(){
                         <td>{Deposite.sourav}</td>
                         <td>{PersonalExpense.sourav}</td>
                         <td>{MealData.sourav}</td>
-                        <td>{PersonalExpense.sourav - Deposite.sourav >= 0  ? <span>Have to Pay <b style={{color:'red'}}>{PersonalExpense.sc} </b>Taka</span> : <span>Will get  return <b>{PersonalExpense.sc}</b> Taka </span>}</td>
+                        <td>{PersonalExpense.sourav - Deposite.sourav > 0  ? <span>Have to Pay <b style={{color:'red'}}>{PersonalExpense.sc} </b>Taka</span> : <span>Will get  return <b>{PersonalExpense.sc}</b> Taka </span>}</td>
                     </tr>
                     <tr key={Math.random()}>
                         <td>Arifur Rahman</td>
                         <td>{Deposite.arif}</td>
                         <td>{PersonalExpense.arif}</td>
                         <td>{MealData.arif}</td>
-                        <td>{PersonalExpense.arif - Deposite.arif >= 0  ? <span>Have to Pay <b style={{color:'red'}}>{PersonalExpense.ac}</b> Taka</span> : <span>Will get return  <b>{PersonalExpense.ac}</b> Taka</span>}</td>
+                        <td>{PersonalExpense.arif - Deposite.arif > 0  ? <span>Have to Pay <b style={{color:'red'}}>{PersonalExpense.ac}</b> Taka</span> : <span>Will get return  <b>{PersonalExpense.ac}</b> Taka</span>}</td>
                     </tr>
                     <tr key={Math.random()}>
                         <td>Mannan Hossain</td>
                         <td>{Deposite.mannan}</td>
                         <td>{PersonalExpense.mannan}</td>
                         <td>{MealData.mannan}</td>
-                        <td>{PersonalExpense.mannan - Deposite.mannan >= 0  ? <span>Have to Pay <b style={{color:'red'}}>{PersonalExpense.mc}</b> Taka</span> : <span>Will get return <b>{PersonalExpense.mc}</b> Taka</span>}</td>
+                        <td>{PersonalExpense.mannan - Deposite.mannan > 0  ? <span>Have to Pay <b style={{color:'red'}}>{PersonalExpense.mc}</b> Taka</span> : <span>Will get return <b>{PersonalExpense.mc}</b> Taka</span>}</td>
                     </tr>
                     {/* <MembersTable members={arr}/> */}
                 </table>

@@ -152,8 +152,6 @@ export default function Bazar(){
             <div className="main">
                 <div className='form_data'>
                     <form onSubmit={handleExpenseSubmit}>
-                                    
-                         
                         <div className="fieldSet fset">
                                 <fieldset>
                                     <legend> <h3>Date</h3></legend>
