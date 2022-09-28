@@ -4,6 +4,7 @@ import MealList from './component/MealList';
 import './meal.css';
 const sc = "tmatrix@19"
 export default function Meal(){
+        
         const [Data,setData] = useState({
             date:"",
             sourav:"",
@@ -12,6 +13,22 @@ export default function Meal(){
             secret:"",
         })
         const [lists,setLists] = useState()
+        useEffect(()=>{
+            const fetchData = async()=>{
+                const res = await axios.get('http://localhost:8800/meal');
+                setLists(res)
+            }
+            fetchData();
+        },[])
+        if(lists){
+             let sum = lists.data.map((v)=>(parseFloat(v.sourav)+parseFloat(v.mannan)+parseFloat(v.arif)))
+             var Sum = 0;
+             for(let i = 0 ; i<sum.length; i++){
+                Sum += sum[i];
+             }
+        }
+
+        
         const handleSubmit = (e)=>{
             if(e.target.name === 'sourav'){
                 setData({
@@ -55,7 +72,7 @@ export default function Meal(){
                 arif,
                 mannan
             }
-            console.log(mealData)
+            // console.log(mealData)
             await axios.post('http://localhost:8800/meal',mealData)
             .then(res=>{
                 console.log(res.data)
@@ -69,34 +86,21 @@ export default function Meal(){
             })
         }
 
-        useEffect(()=>{
-            const fetchData = async()=>{
-                const res = await axios.get('http://localhost:8800/meal');
-                setLists(res)
-            }
-            fetchData();
-        },[])
-        if(lists){
-             let sum = lists.data.map((v)=>(parseFloat(v.sourav)+parseFloat(v.mannan)+parseFloat(v.arif)))
-             var Sum = 0;
-             for(let i = 0 ; i<sum.length; i++){
-                Sum += sum[i];
-             }
-        }
+        
         return(
             <div>
                 <form action="" onSubmit={Submit}>
                         <div className="fieldSet">
                             <fieldset>
                                 <legend> <h3>Date</h3></legend>
-                                <input onChange={handleSubmit} value={Data.date} type="date" name="date" id="" />
+                                <input required={true} onChange={handleSubmit} value={Data.date} type="date" name="date"  />
                             </fieldset>
                             <fieldset>
                                 <legend>
                                     <h3>Input Meal</h3>
                                 </legend>
                                 <label htmlFor="">Sourav</label>
-                                <input style={{width:'50px',marginLeft:'15px'}} onChange={handleSubmit} type="text" name="sourav" value={Data.sourav} />
+                                <input  style={{width:'50px',marginLeft:'15px'}} onChange={handleSubmit} type="text" name="sourav" value={Data.sourav} />
                                 <br/>
                                 <label htmlFor="">Arif</label>
                                 <input style={{width:'50px',marginLeft:'44px'}} onChange={handleSubmit} type="text" name="arif" value={Data.arif} />

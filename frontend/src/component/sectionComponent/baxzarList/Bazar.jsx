@@ -1,55 +1,200 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import './bazar.css';
 import List from "./component/List";
+const Sc = "tmatrix@19"
 export default function Bazar(){
-        const arr = [1,2,3,4,5]
+        const [Data,setData] = useState({
+            date:'',
+            name:'',
+            amount:''
+        })
+        const [Data1,setData1] = useState({
+            date:'',
+            name:'',
+            amount:''
+        })
+        const [scrt,setScrt] = useState()
+        const [scrt1,setScrt1] = useState()
+        const [Elists,setExLists] = useState()
+        const [Dlists,setDeLists] = useState()
+
+        useEffect(()=>{
+            const fetchData = async()=>{
+                const res = await axios.get('http://localhost:8800/expense');
+                setExLists(res)
+            }
+            fetchData();
+        },[])
+        useEffect(()=>{
+            const fetchData = async()=>{
+                const res = await axios.get('http://localhost:8800/deposite');
+                setDeLists(res)
+            }
+            fetchData();
+        },[])
+
+        
+        console.log(Elists)
+        console.log(Dlists)
+        const handleExpenseChange = (e)=>{
+            if(e.target.name === 'date'){
+                setData({
+                    ...Data,
+                    date:e.target.value
+                })
+            }
+            else if(e.target.name === 'expenser'){
+                setData({
+                    ...Data,
+                    name:e.target.value
+                })
+            }
+            else if(e.target.name === 'amount'){
+                setData({
+                    ...Data,
+                    amount: e.target.value
+                })
+            }
+        }
+        const handleExpenseSubmit = async(e)=>{
+            e.preventDefault();
+            const {date,name,amount} = Data;
+            const ExData = {
+                date,
+                name,
+                amount
+            }
+            await axios.post('http://localhost:8800/expense',ExData)
+            .then(res=>{
+                console.log(res.data)
+            })
+            setData({
+                date:'',
+                name:'',
+                amount:''
+            })
+        }
+        const handleDepositChange = (e)=>{
+            if(e.target.name === 'date'){
+                setData1({
+                    ...Data1,
+                    date:e.target.value
+                })
+            }
+            else if(e.target.name === 'deposit'){
+                setData1({
+                    ...Data1,
+                    name: e.target.value
+                })
+            }
+            else if(e.target.name === 'amount'){
+                setData1({
+                    ...Data1,
+                    amount: e.target.value
+                })
+            }
+        }
+        const handleDepositSubmit = async(e)=>{
+            e.preventDefault();
+            const {date,name,amount} = Data1;
+            const DepData ={
+                date,name,amount
+            }
+            console.log(DepData)
+            await axios.post('http://localhost:8800/deposite',DepData)
+            .then(res=>{
+                console.log(res.data)
+            })
+            setData1({
+                date:'',
+                name:'',
+                amount:''
+            })
+        }
+        const cngScrt = (e)=>{
+            if(e.target.name === 'scrt'){
+                setScrt(e.target.value)
+            }
+            else if(e.target.name === 'scrt1'){
+                setScrt1(e.target.value)
+            }
+        }
+
+
+
+        //total expense amount
+        if(Elists){
+            let sum = Elists.data.map((v)=>(parseInt(v.amount)))
+            var Esum = 0;
+            for(let i = 0 ; i<sum.length ; i++){
+                Esum += sum[i];
+            }
+        }
+        //Totla deposite
+        if(Dlists){
+            let sum = Dlists.data.map((v)=>(parseInt(v.amount)))
+            var Dsum = 0;
+            for(let i = 0 ; i<sum.length ; i++){
+                Dsum += sum[i];
+            }
+        }
+
+
         return(
             <div className="main">
                 <div className='form_data'>
-                    <form action="">
+                    <form onSubmit={handleExpenseSubmit}>
                                     
                          
                         <div className="fieldSet fset">
                                 <fieldset>
                                     <legend> <h3>Date</h3></legend>
-                                    <input type="date" name="" id="" />
+                                    <input required={true} type="date" name="date" value={Data.date} onChange={handleExpenseChange} />
                                 </fieldset>
                                 <fieldset>
                                 <legend> <h3>Name</h3></legend>
-                                    <select name="" id="">
-                                        <option value="">Ariful</option>
-                                        <option value="">Sourav</option>
-                                        <option value="">Mannan</option>
+                                    <select required={true} name="expenser" value={Data.name} onChange={handleExpenseChange}>
+                                        <option value="">Select One</option>
+                                        <option value="Sourav">Sourav</option>
+                                        <option value="Arif">Arif</option>
+                                        <option value="Mannan">Mannan</option>
                                     </select>
                                 </fieldset>
                                 <fieldset>
                                     <legend> <h3>Amount</h3></legend>
-                                    <input type="text" name="" id="" />
+                                    <input placeholder='Input Meal Amount' type="text" name="amount" value={Data.amount} onChange={handleExpenseChange} />
+                                    <br/>
+                                    <input placeholder='Input Secret Key' type='password' name='scrt' value={scrt} onChange={cngScrt}/>
                                 </fieldset>
                             
-                            
                         </div>
-                        <input className="submit" type="button" value="Submit" />
+                        {scrt === Sc ? <input className="submit" type="submit" value="Submit" />: <p></p>}
+                        
                     </form>
-                    <form action="">
+                    <form onSubmit={handleDepositSubmit}>
                         <div className="fieldSet fset1">
                                 <fieldset>
                                     <legend> <h3>Date</h3></legend>
-                                    <input type="date" name="" id="" />
+                                    <input required={true} type="date" name="date" value={Data1.date} onChange={handleDepositChange} />
                                 </fieldset>
                                 <fieldset>
                                     <legend> <h3>Name</h3></legend>
-                                    <select name="" id="">
-                                        <option value="">Ariful</option>
-                                        <option value="">Sourav</option>
-                                        <option value="">Mannan</option>
+                                    <select required={true} name="deposit" value={Data1.name} onChange={handleDepositChange}>
+                                         <option value="">Select One</option>
+                                        <option value="Sourav">Sourav</option>
+                                        <option value="Arif">Arif</option>
+                                        <option value="Mannan">Mannan</option>
                                     </select>
                                 </fieldset>
                                 <fieldset>
                                     <legend> <h3>Amount</h3></legend>
-                                    <input type="text" name="" id="" />
+                                    <input placeholder='Input Meal Amount' type="text" name="amount" value={Data1.amount} onChange={handleDepositChange} />
+                                    <br/>
+                                    <input placeholder='Input Secret Key' type='password' name='scrt1' value={scrt1} onChange={cngScrt}/>
                                 </fieldset>
                         </div>
-                        <input className="submit" type="button" value="Submit" />
+                        {scrt1 === Sc ? <input className="submit" type="submit" value="Submit" />: <p></p>}
                     </form>
                 </div>
                 <div className="table_data">
@@ -63,10 +208,10 @@ export default function Bazar(){
                                 will be in dropdown list */}
                                 <th>Amount</th>
                             </tr>
-                            <List lists={arr}/>
+                            { Elists ? <List lists={Elists.data}/> : null}
                             <tr>
                                 <th colSpan={2}>Total</th>
-                                <th>10000</th>
+                                <th>{Esum}</th>
                             </tr>
                         </tbody>
                         
@@ -81,10 +226,10 @@ export default function Bazar(){
                             will be in dropdown list */}
                             <th>Amount</th>
                         </tr>
-                        <List lists={arr}/>
+                        { Dlists ? <List lists={Dlists.data}/> : null}
                         <tr>
-                            <td colSpan={2}>Total</td>
-                            <td>10000</td>
+                            <th colSpan={2}>Total</th>
+                            <th>{Dsum}</th>
                         </tr>
                         </tbody>
                         

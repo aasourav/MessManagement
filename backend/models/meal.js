@@ -1,8 +1,8 @@
 const mongoose  = require('mongoose')
 const Meal = mongoose.Schema({
     date:{
-        type:Date,
-        default:Date.now()
+        type:String,
+        required:true
     },
     sourav:{
         type:String,

@@ -1,11 +1,12 @@
 export default function List({lists}){
+        if(!lists) return;
         return(
             <>
-                {lists.map(()=>(
+                {lists.map((v)=>(
                     <tr key={Math.random()}>
-                        <td key={Math.random()}>10/12/2022</td>
-                        <td key={Math.random()}>Arirfur Rahman</td>
-                        <td key={Math.random()}>1200</td>
+                        <td key={Math.random()}>{v.date}</td>
+                        <td key={Math.random()}>{v.name}</td>
+                        <td key={Math.random()}>{v.amount}</td>
                     </tr>
                 ))}
             </>
