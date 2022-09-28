@@ -170,7 +170,7 @@ export default function Bazar(){
                                 </fieldset>
                                 <fieldset>
                                     <legend> <h3>Amount</h3></legend>
-                                    <input placeholder='Input Meal Amount' type="text" name="amount" value={Data.amount} onChange={handleExpenseChange} />
+                                    <input placeholder='Input Amount' type="text" name="amount" value={Data.amount} onChange={handleExpenseChange} />
                                     <br/>
                                     <input placeholder='Input Secret Key' type='password' name='scrt' value={scrt} onChange={cngScrt}/>
                                 </fieldset>
@@ -196,7 +196,7 @@ export default function Bazar(){
                                 </fieldset>
                                 <fieldset>
                                     <legend> <h3>Amount</h3></legend>
-                                    <input placeholder='Input Meal Amount' type="text" name="amount" value={Data1.amount} onChange={handleDepositChange} />
+                                    <input placeholder='Input Amount' type="text" name="amount" value={Data1.amount} onChange={handleDepositChange} />
                                     <br/>
                                     <input placeholder='Input Secret Key' type='password' name='scrt1' value={scrt1} onChange={cngScrt}/>
                                 </fieldset>
